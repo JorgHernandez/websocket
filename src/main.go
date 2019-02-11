@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package main
 
 import (
@@ -84,3 +85,6 @@ func main() {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
+=======
+package main
+>>>>>>> 7c89d91e9bcee925c04f6b9c232bce87542ddb29
