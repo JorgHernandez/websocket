@@ -1,2 +1,2 @@
-# websocket
-chat-Golang
+# chat-go
+Creacion de un chat mediante WebSocket
