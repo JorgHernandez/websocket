@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket</title>
+</head>
+
+<body>
+
+
+    <input id="input" type="text" />
+    <button onclick="enviar()">Enviar mensaje</button>
+    <pre id="output"></pre>
+    <script>
+        var input = document.getElementById("input");
+        var output = document.getElementById("output");
+        var socket = new WebSocket("ws://localhost:8080/chat");
+
+        socket.onopen = function () {
+            output.innerHTML += "Status: Conectado\n";
+        };
+
+        socket.onmessage = function (e) {
+            output.innerHTML += "Usuario: " + e.data + "\n";
+        };
+
+        function enviar() {
+            socket.send(input.value);
+            input.value = "";
+        }
+    </script>
+
+
+</body>
+
+</html>
