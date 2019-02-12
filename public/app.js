@@ -13,9 +13,9 @@ new Vue({
     created: function () {
         //
         //
-        var servidor ="192168.13.16"
+        var servidor = "192168.13.16"
         var self = this;
-        this.ws = new WebSocket('ws://' + window.location.host + '/ws');
+        this.ws = new WebSocket('wss://' + window.location.host + '/ws');
         this.ws.addEventListener('message', function (e) {
             var msg = JSON.parse(e.data);
             self.chatContent += '<div class="chip">' +
@@ -47,11 +47,11 @@ new Vue({
 
         join: function () {
             if (!this.email) {
-                Materialize.toast('You must enter an email', 2000);
+                Materialize.toast('Por favor ingrese su correo', 2000);
                 return
             }
             if (!this.username) {
-                Materialize.toast('You must choose a username', 2000);
+                Materialize.toast('Por favor ingrese su usuario', 2000);
                 return
             }
             this.email = $('<p>').html(this.email).text();
