@@ -21,9 +21,7 @@ type Message struct {
 	Message  string `json:"message"`
 }
 
-<<<<<<< HEAD
 // esta funcion manejara nuestras conexiones  WebSocket entrantes
-=======
 func main() {
 	// Create a simple file server
 	fs := http.FileServer(http.Dir("../public"))
@@ -43,7 +41,6 @@ func main() {
 	}
 }
 
->>>>>>> c87cb8edc90bad1b8df6c51ba901d3b7d800e37c
 func handleConnections(w http.ResponseWriter, r *http.Request) {
 	// El método Upgrade() permite cambiar nuesra solicitud GET inicial a una completa en WebSocket, si hay un error lo mostramos en consola pero no salimos.
 	ws, err := upgrader.Upgrade(w, r, nil)
