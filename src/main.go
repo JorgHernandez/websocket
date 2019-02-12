@@ -74,7 +74,7 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 //goroutine llamada "handleMessages"
 func handleMessages() {
 	for {
-		// Grab the next message from the broadcast channel
+		// Toma el siguiente mensaje del canal de transmisión.
 		msg := <-broadcast
 
 		// Send it out to every client that is currently connected

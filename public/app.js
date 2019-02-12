@@ -13,6 +13,7 @@ new Vue({
     created: function () {
         //
         //
+        var servidor ="192168.13.16"
         var self = this;
         this.ws = new WebSocket('ws://' + window.location.host + '/ws');
         this.ws.addEventListener('message', function (e) {
