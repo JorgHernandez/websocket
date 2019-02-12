@@ -57,7 +57,7 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 	for {
 		var msg Message
 
-		// Read in a new message as JSON and map it to a Message object
+		// Si hay un error, registramos ese error y eliminamos ese cliente de nuestro mapa global de clients
 		err := ws.ReadJSON(&msg)
 		if err != nil {
 			log.Printf("error: %v", err)
