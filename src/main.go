@@ -1,38 +1,40 @@
 package main
 
 import (
+	// Importamos las librerías necesarias, aunque con solo guardar se importan automáticamente :D
 	"log"
 	"net/http"
 
 	"github.com/gorilla/websocket"
 )
 
-var clients = make(map[*websocket.Conn]bool) // Connected clients
-var broadcast = make(chan Message)           // Broadcast channel
+var clients = make(map[*websocket.Conn]bool) //clients Conectados
+var broadcast = make(chan Message)           // Broadcast canal de transmision
 
-// Configure the upgrader
+// upgrader Este es solo un objeto con métodos para tomar una conexión HTTP normal y actualizarla a un WebSocket
 var upgrader = websocket.Upgrader{}
 
-// Define our Message object
+//Message Definiremos un objeto para guardar nuestros mensajes, para interactuar con el servicio ***Gravatar*** que nos proporcionará un avatar único.
 type Message struct {
 	Email    string `json:"email"`
 	Username string `json:"username"`
 	Message  string `json:"message"`
 }
 
+// esta funcion manejara nuestras conexiones  WebSocket entrantes
 func handleConnections(w http.ResponseWriter, r *http.Request) {
-	// Upgrade intial GET request to a websocket
+	// El método Upgrade() permite cambiar nuesra solicitud GET inicial a una completa en WebSocket, si hay un error lo mostramos en consola pero no salimos.
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Make sure we close the connection weh the function returns
+	// para cerrar la conexion una vez termina la funcion
 	defer ws.Close()
 
-	// Register our new client
+	// Registramos nuestro nuevo cliente al agregarlo al mapa global de "clients" que fue creado anteriormente.
 	clients[ws] = true
-
+	// Bucle infinito que espera continuamente que se escriba  un nuevo mensaje en el WebSocket, lo desserializa de JSON a un objeto Message y luego lo arroja al canal de difusión.
 	for {
 		var msg Message
 

@@ -3,19 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Simple chat</title>
+    <title>Chat Fake jajajaj</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css" />
     <link rel="stylesheet" href="/style.css">
+
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo right">Simple Chat</a>
+                <a href="/" class="brand-logo right">CHAT FAKE jajajaj</a>
             </div>
         </nav>
     </header>
@@ -31,10 +33,12 @@
         <div class="row" v-if="joined">
             <div class="input-field col s8">
                 <input type="text" v-model="newMsg" @keyup.enter="send">
+                <i class="em em-some-emoji"></i>
             </div>
             <div class="input-field col s4">
                 <button class="waves-effect waves-light btn" @click="send">
                     <i class="material-icons right">chat</i>
+
                     Send
                 </button>
             </div>
@@ -44,7 +48,7 @@
                 <input type="email" v-model.trim="email" placeholder="Email">
             </div>
             <div class="input-field col s8">
-                <input type="text" v-model.trim="username" placeholder="Username">
+                <input type="text" v-model.trim="username" placeholder="Usuario">
             </div>
             <div class="input-field col s4">
                 <button class="waves-effect waves-light btn" @click="join()">
